@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}用户信息{% endblock %}
+
+{% block breadcrunb %}
+    <h2>用户信息</h2>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped table-bordered table-hover success">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>用户名</th>
+            <th>中文名</th>
+            <th>电子邮件</th>
+            <th>联系方式</th>
+            <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for us in userinfo %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ us.username }}</td>
+                <td>{{ us.name_cn }}</td>
+                <td>{{ us.email }}</td>
+                {% if us.phone == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ us.phone }}</td>
+                {% endif %}
+                {% if us.is_active == True %}
+                    <td>激活</td>
+                {% else %}
+                    <td>禁用</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
